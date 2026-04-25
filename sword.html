@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sword</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>SWORD CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Ice Queen')">Ice Queen</div>
+    <div class="tier-item" onclick="openModal('Dragon Goddess')">Dragon Goddess</div>
+    <div class="tier-item" onclick="openModal('Atomic')">Atomic</div>
+    <div class="tier-item" onclick="openModal('Great Mage')">Great Mage</div>
+    <div class="tier-item" onclick="openModal('Shadow Monarch')">Shadow Monarch</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Abyssal Empress')">Abyssal Empress</div>
+    <div class="tier-item" onclick="openModal('True Aizen')">True Aizen</div>
+    <div class="tier-item" onclick="openModal('Yamato')">Yamato</div>
+    <div class="tier-item" onclick="openModal('Escanor')">Escanor</div>
+    <div class="tier-item" onclick="openModal('Rimuru')">Rimuru</div>
+    <div class="tier-item" onclick="openModal('Shadow')">Shadow</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Ichigo')">Ichigo</div>
+    <div class="tier-item" onclick="openModal('Aizen')">Aizen</div>
+    <div class="tier-item" onclick="openModal('Ragna')">Ragna</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Jinwoo')">Jinwoo</div>
+    <div class="tier-item" onclick="openModal('Saber')">Saber</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Gryphon')">Gryphon</div>
+    <div class="tier-item" onclick="openModal('Dark Blade')">Dark Blade</div>
+    <div class="tier-item" onclick="openModal('Katana')">Katana</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="swordModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+    <p><strong>Cons:</strong> <span id="modalCons"></span></p>
+    <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+    <p><strong>Requirements:</strong> <span id="modalReq"></span></p>
+  </div>
+</div>
+
+<script>
+const swordData = {
+  "Ice Queen": {
+    pros: "Best AOE and burst damage with low cooldowns",
+    cons: "Weak F ability range",
+    location: "Boss Island",
+    req: "Frost Empress Title and Ice Queen materials"
+  },
+  "Dragon Goddess": {
+    pros: "Some abilities are weaker than Ice Queen",
+    cons: "NNeed high luck to obtain",
+    location: "Open or Deep Sea in Sea 2",
+    req: "Drops from Sea Beasts"
+  },
+  "Atomic": {
+    pros: "Strong F damage",
+    cons: "Very difficult to obtain",
+    location: "Lawless Island",
+    req: "Shadow Sword, Eminence Incarnate Title, Atomic materials"
+  },
+  "Great Mage": {
+    pros: "Weaker AOE than Atomic",
+    cons: "Easy to obtain",
+    location: "Easter Island",
+    req: "Ancient Mage Title and Great Mage materials, Purchase from Easter shop"
+  },
+  "Shadow Monarch": {
+    pros: "High damage in the game, excellent burst skills",
+    cons: "Very difficult to obtain",
+    location: "Dungeon Island",
+    req: "King of Shadows Title, Jinwoo Sword, Monarch materials"
+  },
+  "Abyssal Empress": {
+    pros: "Great late-game sword and easy to obtain",
+    cons: "Requires hours of farming in the tower",
+    location: "Tower Island",
+    req: "Infinite Tower drop or shop"
+  },
+  "True Aizen": {
+    pros: "High damage and fast",
+    cons: "Very difficult to obtain",
+    location: "Soul Dominion",
+    req: "Aizen Sword, Transcendent Being Title, True Aizen materials"
+  }, 
+  "Yamato": {
+    pros: "High DPS with large AoE coverage and Fast",
+    cons: "Hardest acquisition in the game",
+    location: "Judgement Island",
+    req: "Blade Sovereign Title, Yamato materials, Swordblessed race"
+  },
+  "Escanor": {
+    pros: "Massive AoE damage and strong overall DPS",
+    cons: "Hard to farm drop",
+    location: "Escanor Boss",
+    req: "Boss Rush drop"
+  },
+  "Rimuru": {
+    pros: "Great AoE and cooldowns, strong for grinding",
+    cons: "Long animations",
+    location: "Slime Island",
+    req: "Demon Lord Title and materials"
+  },
+  "Shadow": {
+    pros: "Fast attacks and strong M1 damage",
+    cons: "Long mastery grind",
+    location: "Dungeon Island",
+    req: "Shadow materials"
+  },
+  "Ichigo": {
+    pros: "Excellent mid game sword with fast skills",
+    cons: "No F move",
+    location: "Hollow Island",
+    req: "Boss tickets or crafting"
+  },
+  "Aizen": {
+    pros: "Solid AoE and iFrames",
+    cons: "Weak without mastery",
+    location: "Hollow Island",
+    req: "Crafting materials"
+  },
+  "Ragna": {
+    pros: "Decent damage",
+    cons: "Currently unobtainable",
+    location: "Snow Island",
+    req: "Crafting materials"
+  },
+  "Jinwoo": {
+    pros: "Good mid game sword",
+    cons: "Lowest DPS among mythicals",
+    location: "Sailor Island",
+    req: "Crafting materials"
+  },
+  "Saber": {
+    pros: "Easy to obtain and useful early",
+    cons: "Much weaker than mythic swords",
+    location: "Boss Island",
+    req: "Boss drop"
+  },
+  "Gryphon": {
+    pros: "Starter sword option for beginning players",
+    cons: "Saber has more moves",
+    location: "Shibuya Station",
+    req: "650,000 Gold and 650 Gems"
+  },
+  "Dark Blade": {
+    pros: "Decent early grinding weapon",
+    cons: "Gryphon is stronger",
+    location: "Snow Island",
+    req: "Cash and Gems"
+  },
+  "Katana": {
+    pros: "Basic early game weapon",
+    cons: "Very weak compared to others",
+    location: "Starter Island",
+    req: "Cash purchase"
+  },
+};
+
+function openModal(name){
+  const data = swordData[name];
+
+  if(!data){
+    alert("Bu sword için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("swordModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+  document.getElementById("modalCons").innerText = data.cons;
+  document.getElementById("modalLocation").innerText = data.location;
+  document.getElementById("modalReq").innerText = data.req;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("swordModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("swordModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fruits</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>FRUITS CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Light')">Light</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Quake')">Quake</div>
+    <div class="tier-item" onclick="openModal('Flame')">Flame</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Bomb')">Bomb</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Invisible')">Invisible</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="fruitsModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const fruitsData = {
+  "Light": {
+    pros: "Light is the best fruit in Sailor Piece thanks to its serious damage output and the ability to fly. The mobility alone makes it extremely valuable for both combat and fast map traversal.",
+  },
+  "Quake": {
+    pros: "Quake deals strong AoE damage and performs well in both boss fights and mob grinding. While it lacks mobility like Light, its raw power keeps it near the top.",
+  },
+  "Flame": {
+    pros: "Flame is a solid early and mid-game fruit with reliable AoE attacks. It does not scale as well into the late game compared to the top fruit.",
+  },
+  "Bomb": {
+    pros: "Bomb can deal decent burst damage, but lacks variety in its skill set. Because of that, it falls behind the stronger fruits.",
+  },
+  "Invisible": {
+    pros: "Invisible provides stealth but almost no combat value. Since most builds rely heavily on damage, it becomes the weakest fruit choice.",
+  },
+ };
+
+function openModal(name){
+  const data = fruitsData[name];
+
+  if(!data){
+    alert("Bu fruits için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("fruitsModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("fruitsModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("fruitsModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

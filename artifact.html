@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artifact</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>ARTIFACT CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Abyssal Crown Set')">Abyssal Crown Set</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Celestial Rupture Set')">Celestial Rupture Set</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Void Reaver Set')">Void Reaver Set</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Black Horizon Set')">Black Horizon Set</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Crownless Regalia Set')">Crownless Regalia Set</div>
+    <div class="tier-item" onclick="openModal('Ashen Chronicles Set')">Ashen Chronicles Set</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="artifactModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+    <p><strong>Cons:</strong> <span id="modalCons"></span></p>
+    <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+  </div>
+</div>
+
+<script>
+const artifactData = {
+  "Abyssal Crown Set": {
+    pros: "Best DPS bonuses and crit",
+    cons: "Hard to farm higher rarity",
+    location: "Ninja Island, Lawless Island, Starter Island Sea2, Bizarre Island, Puch Island",
+  },
+  "Celestial Rupture Set": {
+    pros: "Best DPS bonuses and lifesteal",
+    cons: "Hard to farm",
+    location: "Shinjuku, Valentine, Slime, Academy Islands",
+  },
+  "Void Reaver Set": {
+    pros: "Good early game damage bonuses",
+    cons: "Slightly weaker late game",
+    location: "Boss drops",
+  },
+  "Black Horizon Set": {
+    pros: "Strong critical damage scaling",
+    cons: "Lower base stats",
+    location: "Hollow Island",
+  },
+  "Crownless Regalia Set": {
+    pros: "Good defensive bonuses",
+    cons: "Lower damage output",
+    location: "Desert, Snow, Shibuya Islands",
+  },
+  "Ashen Chronicles Set": {
+    pros: "Balanced defensive bonuses",
+    cons: "Weak damage scaling",
+    location: "TJungle Island",
+  },
+};
+
+function openModal(name){
+  const data = artifactData[name];
+
+  if(!data){
+    alert("Bu artifact için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("artifactModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+  document.getElementById("modalCons").innerText = data.cons;
+  document.getElementById("modalLocation").innerText = data.location;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("artifactModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("artifactModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

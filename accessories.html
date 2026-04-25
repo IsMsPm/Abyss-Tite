@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessories</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>ACCESSORIES
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Kraken Armor')">Kraken Armor</div>
+    <div class="tier-item" onclick="openModal('Cosmic Body')">Cosmic Body</div>
+    <div class="tier-item" onclick="openModal('Blossom Outfit')">Blossom Outfit</div>	
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Ice Queen Outfit')">Ice Queen Outfit</div>
+    <div class="tier-item" onclick="openModal('Mage Outfit')">Mage Outfit</div>
+    <div class="tier-item" onclick="openModal('Abyssal Outfit')">Abyssal Outfit</div>
+    <div class="tier-item" onclick="openModal('World Outfit')">World Outfit</div>
+    <div class="tier-item" onclick="openModal('Atomic Outfit')">Atomic Outfit</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Moon Outfit')">Moon Outfit</div>
+    <div class="tier-item" onclick="openModal('Manipulator Outfit')">Manipulator Outfit</div>
+    <div class="tier-item" onclick="openModal('Maiden Outfit')">Maiden Outfit</div>
+    <div class="tier-item" onclick="openModal('Gilgamesh Armor')">Gilgamesh Armor</div>
+    <div class="tier-item" onclick="openModal('Divine Wheel')">Divine Wheel</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Imperial Outfit')">Imperial Outfit</div>
+    <div class="tier-item" onclick="openModal('Gojo Haori')">Gojo Haori</div>
+    <div class="tier-item" onclick="openModal('Slime Wings')">Slime Wings</div>
+    <div class="tier-item" onclick="openModal('Monarch Armor')">Monarch Armor</div>
+    <div class="tier-item" onclick="openModal('Ragna Sigil')">Ragna Sigil</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Hollow Mask')">Hollow Mask</div>
+    <div class="tier-item" onclick="openModal('Ultimate Wings')">Ultimate Wings</div>
+    <div class="tier-item" onclick="openModal('Heart Wings')">Heart Wings</div>
+    <div class="tier-item" onclick="openModal('Shadow Cloak')">Shadow Cloak</div>
+    <div class="tier-item" onclick="openModal('Sun Armor')">Sun Armor</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label d">D</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Jinwoo Cape')">Jinwoo Cape</div>
+    <div class="tier-item" onclick="openModal('Qin Shi Blindfold')">Qin Shi Blindfold</div>
+    <div class="tier-item" onclick="openModal('Sukuna Collar')">Sukuna Collar</div>
+    <div class="tier-item" onclick="openModal('Valentine Heart')">Valentine Heart</div>
+    <div class="tier-item" onclick="openModal('Santa Hat')">Santa Hat</div>
+    <div class="tier-item" onclick="openModal('Easter Ears')">Easter Ears</div>
+    <div class="tier-item" onclick="openModal('Egg Backpack')">Egg Backpack</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label e">E</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Aizen Haori')">Aizen Haori</div>
+    <div class="tier-item" onclick="openModal('Alucard Coat')">Alucard Coat</div>
+    <div class="tier-item" onclick="openModal('Anos Outfit')">Anos Outfit</div>
+    <div class="tier-item" onclick="openModal('Gojo Blindfold')">Gojo Blindfold</div>
+    <div class="tier-item" onclick="openModal('Saber Armor')">Saber Armor</div>
+    <div class="tier-item" onclick="openModal('Yuji Hair')">Yuji Hair</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="artifactModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const artifactData = {
+  "Kraken Armor": {
+    pros: "Hits the hardest with no real downside. Also holds up well in defense, so it never feels risky to use.",
+  },
+  "Cosmic Body": {
+    pros: "Very high damage with strong overall stats. Slightly behind Kraken but still top-tier in every fight.",
+  },
+  "Blossom Outfit": {
+    pros: "Strong damage with smooth scaling. Lacks a bit of edge compared to the top two but still elite.",
+  },
+  "Ice Queen Outfit": {
+    pros: "Great mix of damage and survivability. Falls short of S+ since others simply hit harder.",
+  },
+  "Mage Outfit": {
+    pros: "Focused on raw damage output. Less forgiving if you take hits, so it favors aggressive play.",
+  },
+  "Abyssal Outfit": {
+    pros: "Solid damage with balanced stats. Does everything well but doesn’t stand out at the top.",
+  },
+  "World Outfit": {
+    pros: "Reliable damage with strong defense backing it up. Slightly outpaced by higher burst options.",
+  },
+  "Atomic Outfit": {
+    pros: "Consistent damage and scaling. Lacks the punch needed to break into S+.",
+  },
+  "Moon Outfit": {
+    pros: "Good damage and easy to use. Just not strong enough to compete with higher tiers.",
+  },
+  "Manipulator Outfit": {
+    pros: "Balanced and dependable. Damage is decent but clearly below top performers.",
+  },
+  "Maiden Outfit": {
+    pros: "Scales well and feels stable. Damage ceiling is not high enough for late game.",
+  },
+  "Gilgamesh Armor": {
+    pros: "Solid all-round stats. Damage feels average once you reach higher content.",
+  },
+  "Divine Wheel": {
+    pros: "Safe and balanced pick. Lacks strong damage impact in tougher fights.",
+  },
+  "Imperial Outfit": {
+    pros: "Built more for defense than damage. Works, but fights take longer.",
+  },
+  "Gojo Haori": {
+    pros: "Decent mid-game option. Gets replaced quickly once better gear shows up.",
+  },
+  "Slime Wings": {
+    pros: "Balanced but unremarkable. Doesn’t offer enough damage to stand out.",
+  },
+  "Monarch Armor": {
+    pros: "Reliable stats with steady output. Feels slow compared to higher tiers.",
+  },
+  "Ragna Sigil": {
+    pros: "Safe choice with average performance. Damage is noticeably lacking.",
+  },
+  "Hollow Mask": {
+    pros: "Basic and easy to use. Damage output is too low for serious play.",
+  },
+  "Ultimate Wings": {
+    pros: "Looks decent on paper. Falls behind quickly in real fights.",
+  },
+  "Heart Wings": {
+    pros: "Slightly better than lower tiers. Still not enough damage to keep up.",
+  },
+  "Shadow Cloak": {
+    pros: "Works fine early on. Lacks impact as enemies get tougher.",
+  },
+  "Sun Armor": {
+    pros: "Strong defensively. Damage is not its strength at all.",
+  },
+  "Jinwoo Cape": {
+    pros: "Weak damage compared to most Mythicals. Mostly a temporary option.",
+  },
+  "Qin Shi Blindfold": {
+    pros: "Niche use with limited value. Damage does not justify using it.",
+  },
+  "Sukuna Collar": {
+    pros: "Lacks both damage and survivability. Quickly falls off.",
+  },
+  "Valentine Heart": {
+    pros: "Very low impact overall. Only useful early on.",
+  },
+  "Santa Hat": {
+    pros: "Minimal damage output. Not viable beyond early stages.",
+  },
+  "Easter Ears": {
+    pros: "Decent at first glance. Outclassed fast by better gear.",
+  },
+  "Egg Backpack": {
+    pros: "Balanced but weak. Easy to replace.",
+  },
+  "Aizen Haori": {
+    pros: "Good early damage boost. Falls off once real Mythicals appear.",
+  },
+  "Alucard Coat": {
+    pros: "Slightly more offense-focused early pick. Still not built for late game.",
+  },
+  "Anos Outfit": {
+    pros: "Strong early stats. Gets outscaled quickly.",
+  },
+  "Gojo Blindfold": {
+    pros: "Simple starter item. Damage is too low for progression.",
+  },
+  "Saber Armor": {
+    pros: "Defensive early option. Not useful once better gear is unlocked.",
+  },
+  "Yuji Hair": {
+    pros: "Balanced starter piece. Quickly replaced in mid game.",
+  },
+
+};
+
+function openModal(name){
+  const data = artifactData[name];
+
+  if(!data){
+    alert("Bu artifact için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("artifactModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c","d","e");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+  if(tierLabel.classList.contains("d")) content.classList.add("d"); // 🔥 EKLE
+  if(tierLabel.classList.contains("e")) content.classList.add("e");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("artifactModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("artifactModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

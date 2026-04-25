@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloodline</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>BLOODLINE CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Primordial')">Primordial</div>
+    <div class="tier-item" onclick="openModal('Astral')">Astral</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Demonblood')">Demonblood</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Dawnbringer')">Dawnbringer</div>
+    <div class="tier-item" onclick="openModal('Nightfall')">Nightfall</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Vizard')">Vizard</div>
+    <div class="tier-item" onclick="openModal('Hunter')">Hunter</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Stormborn')">Stormborn</div>
+  </div>
+</div>
+
+ <div class="tier">
+  <div class="tier-label d">D</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Commoner')">Commoner</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="bloodlineModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const bloodlineData = {
+  "Primordial": {
+    pros: "Strong all-rounder with high damage, solid survivability, and excellent luck scaling. Works well for both combat and farming. Slightly less raw damage than Astral, but the balance makes it more consistent.",
+  },
+  "Astral": {
+    pros: "High damage with lifesteal and strong scaling for sword builds. Very effective in long fights and boss content. Lacks damage reduction, so it can feel risky in tougher fights.",
+  },
+  "Demonblood": {
+    pros: "Strong damage with added lifesteal and melee scaling. Great for aggressive builds. Missing utility stats like luck or defense keeps it just below S+.",
+  },
+  "Dawnbringer": {
+    pros: "Balanced damage with some reduction and utility. Reliable and easy to use. Does not excel in any one area, which limits its ceiling.",
+  },
+  "Nightfall": {
+    pros: "Decent mix of damage, lifesteal, and HP. Feels smooth in general gameplay. Lower damage compared to higher tiers makes it fall behind late game.",
+  },
+  "Vizard": {
+    pros: "Good for farming with gem bonuses and decent HP. Works fine early to mid game. Damage is too low for serious combat builds.",
+  },
+  "Hunter": {
+    pros: "Focused on money and gem gain. Useful for progression and farming setups. Very weak in combat compared to other options.",
+  }, 
+  "Stormborn": {
+    pros: "Minor damage boost with XP gain. Helps with leveling early on. Lacks both strong damage and survivability.",
+  },
+  "Commoner": {
+    pros: "Basic starter bloodline. Offers small boosts across the board. Quickly replaced once better options are unlocked.",
+  },
+ };
+
+function openModal(name){
+  const data = bloodlineData[name];
+
+  if(!data){
+    alert("Bu bloodline için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("bloodlineModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("bloodlineModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("bloodlineModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

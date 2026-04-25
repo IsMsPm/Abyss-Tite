@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melee</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>MELEE CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Cosmic Being')">Cosmic Being</div>
+    <div class="tier-item" onclick="openModal('The World')">The World</div>
+    <div class="tier-item" onclick="openModal('Moon Slayer')">Moon Slayer</div>
+    <div class="tier-item" onclick="openModal('Strongest Shinobi')">Strongest Shinobi</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Anos')">Anos</div>
+    <div class="tier-item" onclick="openModal('Corrupted Excalibur')">Corrupted Excalibur</div>
+    <div class="tier-item" onclick="openModal('Strongest in History')">Strongest in History</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Strongest of Today')">Strongest of Today</div>
+    <div class="tier-item" onclick="openModal('Madoka')">Madoka</div>
+    <div class="tier-item" onclick="openModal('Alucard')">Alucard</div>
+    <div class="tier-item" onclick="openModal('Qin Shi')">Qin Shi</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Sukuna')">Sukuna</div>
+    <div class="tier-item" onclick="openModal('Gojo')">Gojo</div>
+    <div class="tier-item" onclick="openModal('Yuji')">Yuji</div>
+
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Combat')">Combat</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="meleeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+    <p><strong>Cons:</strong> <span id="modalCons"></span></p>
+    <p><strong>Location:</strong> <span id="modalLocation"></span></p>
+    <p><strong>Requirements:</strong> <span id="modalReq"></span></p>
+  </div>
+</div>
+
+<script>
+const meleeData = {
+  "Cosmic Being": {
+    pros: "Best burst damage and crowd control",
+    cons: "Hard to obtain",
+    location: "Punch Island",
+    req: "Cosmic Being materials and Title, Cosmic Being boss drop"
+  },
+  "The World": {
+    pros: "Great for AFK farming with low cooldown and solid damage abilities",
+    cons: "Hard F move unlock",
+    location: "Bizarre Island",
+    req: "The World materials and Time Tyrant Title"
+  },
+  "Moon Slayer": {
+    pros: "Strong damage and short cooldowns",
+    cons: "Easier to obtain",
+    location: "Boss Island",
+    req: "Moon Slayer materials and Six Eyed Demon Title"
+  },
+  "Strongest Shinobi": {
+    pros: "Strongest damage stats in the game",
+    cons: "Long cooldowns",
+    location: "Ninja Island",
+    req: "Strongest Shinobi materials and Battlefield Warlord Title"
+  },
+  "Anos": {
+    pros: "Extremely high burst damage and AoE",
+    cons: "Long animations",
+    location: "Academy Island",
+    req: "Demon King Title and materials"
+  },
+  "Corrupted Excalibur": {
+    pros: "Massive F move damage and knock",
+    cons: "Distance matters",
+    location: "Boss Island",
+    req: "Corrupt Tyrant Title and materials"
+  },
+  "Gilgamesh": {
+    pros: "Fast animations and strong DPS",
+    cons: "Narrow AoE on some skills",
+    location: "Boss Island",
+    req: "Golden King Title"
+  }, 
+  "Strongest in History": {
+    pros: "Highest M1 damage and strong scaling",
+    cons: "Hard to obtain",
+    location: "Valentine Island",
+    req: "Rare materials"
+  },
+  "Strongest of Today": {
+    pros: "Huge AoE and iFrames",
+    cons: "Lower M1 damage",
+    location: "Shinjuku Island",
+    req: "Infinity materials"
+  },
+  "Madoka": {
+    pros: "Strong burst and AoE",
+    cons: "Low M1 damage",
+    location: "Shinjuku Island",
+    req: "Crafting materials"
+  },
+  "Alucard": {
+    pros: "Good mid game spec",
+    cons: "Difficult to obtain",
+    location: "Sailor Island",
+    req: "Vampire race requirement"
+  },
+  "Qin Shi": {
+    pros: "Easy to obtain early",
+    cons: "Falls off later",
+    location: "Boss Island",
+    req: "Tickets or crafting"
+  },
+  "Sukuna": {
+    pros: "Strong early damage",
+    cons: "Weak late game",
+    location: "Shibuya Station",
+    req: "Crafting materials"
+  },
+  "Gojo": {
+    pros: "Easy to obtain",
+    cons: "Weak animations",
+    location: "Shibuya Station",
+    req: "Crafting materials"
+  },
+  "Yuji": {
+    pros: "Decent early spec",
+    cons: "Short M1 range",
+    location: "Shibuya Station",
+    req: "Crafting materials"
+  },
+  "Combat": {
+    pros: "Starter spec",
+    cons: "Quickly replaced",
+    location: "Default",
+    req: "None"
+  },
+ };
+
+function openModal(name){
+  const data = meleeData[name];
+
+  if(!data){
+    alert("Bu melee için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("meleeModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+  document.getElementById("modalCons").innerText = data.cons;
+  document.getElementById("modalLocation").innerText = data.location;
+  document.getElementById("modalReq").innerText = data.req;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("meleeModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("meleeModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

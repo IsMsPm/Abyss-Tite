@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Race</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>RACE CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Luckborn')">Luckborn</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Warlord')">Warlord</div>
+    <div class="tier-item" onclick="openModal('Swordblessed')">Swordblessed</div>
+    <div class="tier-item" onclick="openModal('Sunborn')">Sunborn</div>
+    <div class="tier-item" onclick="openModal('Servant')">Servant</div>
+    <div class="tier-item" onclick="openModal('Kitsune')">Kitsune</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Slime')">Slime</div>
+    <div class="tier-item" onclick="openModal('Leviathan')">Leviathan</div>
+    <div class="tier-item" onclick="openModal('Oni')">Oni</div>
+    <div class="tier-item" onclick="openModal('Hollow')">Hollow</div>
+    <div class="tier-item" onclick="openModal('Shinigami')">Shinigami</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Shadowborn')">Shadowborn</div>
+    <div class="tier-item" onclick="openModal('Player')">Player</div>
+    <div class="tier-item" onclick="openModal('Vessel')">Vessel</div>
+    <div class="tier-item" onclick="openModal('Limitless')">Limitless</div>
+    <div class="tier-item" onclick="openModal('Vampire')">Vampire</div>
+
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Demon')">Demon</div>
+    <div class="tier-item" onclick="openModal('Orc')">Orc</div>
+    <div class="tier-item" onclick="openModal('Fishman')">Fishman</div>
+    <div class="tier-item" onclick="openModal('Mink')">Mink</div>
+  </div>
+</div>
+
+ <div class="tier">
+  <div class="tier-label d">D</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Skypea')">Skypea</div>
+    <div class="tier-item" onclick="openModal('Human')">Human</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="raceModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const raceData = {
+  "Luckborn": {
+    pros: "Luckborn gives the best luck stat bonus among all Sailor Piece races. On top of that, it improves both melee and sword damage.",
+  },
+  "Warlord": {
+    pros: "Warlord gives massive HP, damage boosts, melee damage multipliers with low lifesteal. However, it has the best damage multiplier in the game.",
+  },
+  "Swordblessed": {
+    pros: "Great for the sword users as it improves sword damage significantly. However, not the best in terms of overall damage.",
+  },
+  "Sunborn": {
+    pros: "Sunborn gives massive HP, damage boosts, sword damage multipliers, and lifesteal. It is one of the strongest all around races for both survivability and DPS.",
+  },
+  "Servant": {
+    pros: "Servant is perfect for melee builds thanks to its strong melee multiplier and high HP bonus. The lifesteal and damage reduction make it very tanky in boss fights.",
+  },
+  "Kitsune": {
+    pros: "Kitsune provides strong overall damage bonuses and a powerful luck multiplier. This makes it the best race for grinding and farming rare drops.",
+  },
+  "Slime": {
+    pros: "Slime offers excellent survivability and sword scaling. It is one of the best races for sword focused builds.",
+  }, 
+  "Leviathan": {
+    pros: "Leviathan has high lifesteal and solid damage bonuses. This makes it strong for long boss fights.",
+  },
+  "Oni": {
+    pros: "Oni focuses on melee damage and durability. It works very well with melee specs but is less flexible for other builds.",
+  },
+  "Hollow": {
+    pros: "Hollow gives strong bonuses for Ichigo builds. Outside of that weapon, its value decreases slightly.",
+  },
+  "Shinigami": {
+    pros: "Shinigami boosts Aizen builds significantly. It is still useful thanks to its solid HP and damage stats.",
+  },
+  "Shadowborn": {
+    pros: "Shadowborn is powerful when paired with Shadow swords. Without that synergy, it becomes more average.",
+  },
+  "Player": {
+    pros: "Player offers balanced stats and boosts Jinwoo swords. Its usefulness depends on the weapon you use.",
+  },
+  "Vessel": {
+    pros: "Vessel works best with Sukuna builds. Outside of that, its bonuses are fairly average.",
+  },
+  "Limitless": {
+    pros: "Limitless boosts Gojo melee abilities but lacks strong general bonuses.",
+  },
+  "Vampire": {
+    pros: "Vampire provides lifesteal and decent damage. However, the overall stat values are lower than higher tier races.",
+  },
+  "Demon": {
+    pros: "Demon gives sprint speed and some basic damage bonuses. It works early on but quickly becomes outclassed.",
+  },
+  "Orc": {
+    pros: "Orc provides minor HP and damage increases. It is useful in the early game but nothing more.",
+  },
+  "Fishman": {
+    pros: "Fishman increases money and experience gain. While useful for leveling, it does not help combat much.",
+  },
+  "Mink": {
+    pros: "Mink improves movement stats like jump height and speed. Unfortunately, it offers no damage bonuses.",
+  },
+  "Skypea": {
+    pros: "Skypea only grants extra jumps. It provides almost no combat advantage.",
+  },
+  "Human": {
+    pros: "Human has no stat bonuses at all. It should be rerolled as soon as possible.",
+  },
+ };
+
+function openModal(name){
+  const data = raceData[name];
+
+  if(!data){
+    alert("Bu race için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("raceModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("raceModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("raceModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

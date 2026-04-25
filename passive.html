@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passive</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>PASSIVE CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Rampage')">Rampage</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Executioner')">Executioner</div>
+    <div class="tier-item" onclick="openModal('Fortune Chosen')">Fortune Chosen</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Berserker')">Berserker</div>
+    <div class="tier-item" onclick="openModal('Eclipse')">Eclipse</div>
+    <div class="tier-item" onclick="openModal('Damage V')">Damage V</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Crit Chance V')">Crit Chance V</div>
+    <div class="tier-item" onclick="openModal('Crit Damage V')">Crit Damage V</div>
+    <div class="tier-item" onclick="openModal('Luck V')">Luck V</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Damage IV')">Damage IV</div>
+    <div class="tier-item" onclick="openModal('Crit Chance IV')">Crit Chance IV</div>
+    <div class="tier-item" onclick="openModal('Crit Damage IV')">Crit Damage IV</div>
+    <div class="tier-item" onclick="openModal('Luck IV')">Luck IV</div>
+  </div>
+</div>
+
+ <div class="tier">
+  <div class="tier-label d">D</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Damage III')">Damage III</div>
+    <div class="tier-item" onclick="openModal('Crit Chance III')">Crit Chance III</div>
+    <div class="tier-item" onclick="openModal('Crit Damage III')">Crit Damage III</div>
+    <div class="tier-item" onclick="openModal('Luck III')">Luck III</div>
+  </div>
+</div>
+
+ <div class="tier">
+  <div class="tier-label e">E</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Damage II')">Damage II</div>
+    <div class="tier-item" onclick="openModal('Crit Chance II')">Crit Chance II</div>
+    <div class="tier-item" onclick="openModal('Crit Damage II')">Crit Damage II</div>
+    <div class="tier-item" onclick="openModal('Luck II')">Luck II</div>
+    <div class="tier-item" onclick="openModal('Damage I')">Damage I</div>
+    <div class="tier-item" onclick="openModal('Crit Chance I')">Crit Chance I</div>
+    <div class="tier-item" onclick="openModal('Crit Damage I')">Crit Damage I</div>
+    <div class="tier-item" onclick="openModal('Luck I')">Luck I</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="passiveModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const passiveData = {
+  "Rampage": {
+    pros: "Best passive in the game for long fights. It stacks damage as you keep hitting, which turns it into a monster in bosses and raids. The only downside is reset on downtime, but in active combat, nothing scales better.",
+  },
+  "Executioner": {
+    pros: "Excellent for finishing enemies fast. The bonus damage on low HP targets makes boss phases much quicker. Slightly situational, but still very strong in most PvE content.",
+  },
+  "Fortune Chosen": {
+    pros: "A mix of drop boost, luck, and damage. Great for farming and still useful in combat. Not the highest damage, but the utility makes it valuable long-term.",
+  },
+  "Berserker": {
+    pros: "Solid mix of damage and crit damage. Reliable and easy to use in all content. Lacks scaling or utility, which keeps it below Mythical passives.",
+  },
+  "Eclipse": {
+    pros: "Balanced mix of crit, damage, and luck. Good hybrid passive for farming and fighting. Does not excel in one area, so it never feels top-tier.",
+  },
+  "Damage V": {
+    pros: "Straight damage boost with no conditions. Consistent and effective in every situation. Simple design holds it back compared to more complex passives.",
+  },
+  "Crit Chance V": {
+    pros: "Helps trigger crit builds more often. Works well if your setup relies on crits. Weak on its own without strong crit damage to support it.",
+  }, 
+  "Crit Damage V": {
+    pros: "Boosts burst damage when crits land. Can feel strong in the right setup. Inconsistent if your crit rate is low.",
+  },
+  "Luck V": {
+    pros: "Good for farming and drops. Helps over time but does not affect combat much. Not ideal if you focus on damage output.",
+  },
+  "Damage IV": {
+    pros: "Decent damage boost for mid progression. Gets replaced once you find higher tiers.",
+  },
+  "Crit Chance IV": {
+    pros: "Small boost to crit rate. Not impactful enough in late game.",
+  },
+  "Crit Damage IV": {
+    pros: "Helps slightly with burst. Needs better support to matter.",
+  },
+  "Luck IV": {
+    pros: "Useful early for farming. Falls off quickly.",
+  },
+  "Damage III": {
+    pros: "Basic damage increase. Works early but lacks scaling.",
+  },
+  "Crit Chance III": {
+    pros: "Minor crit boost. Not noticeable in tougher fights.",
+  },
+  "Crit Damage III": {
+    pros: "Small increase to crit output. Limited value overall.",
+  },
+  "Luck III": {
+    pros: "Early farming help. Not useful long-term.",
+  },
+  "Damage II": {
+    pros: "Very small damage gain. Replaced almost immediately.",
+  },
+  "Crit Chance II": {
+    pros: "Low impact crit boost. Hardly noticeable.",
+  },
+  "Crit Damage II": {
+    pros: "Minimal value. Does not scale well.",
+  },
+  "Luck II": {
+    pros: "Minor drop boost. Not worth keeping.",
+  },
+  "Damage I": {
+    pros: "Starter passive. Offers almost no real impact.",
+  },
+  "Crit Chance I": {
+    pros: "Very low crit increase. Barely useful.",
+  },
+  "Crit Damage I": {
+    pros: "Weak boost. Quickly outdated.",
+  },
+  "Luck I": {
+    pros: "Small luck bonus. Only relevant at the very start.",
+  },
+ };
+
+function openModal(name){
+  const data = passiveData[name];
+
+  if(!data){
+    alert("Bu passive için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("passiveModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+  if(tierLabel.classList.contains("d")) content.classList.add("d");
+  if(tierLabel.classList.contains("e")) content.classList.add("e");
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("passiveModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("passiveModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

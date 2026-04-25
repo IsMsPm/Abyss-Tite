@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clans</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>CLANS CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Frostbane')">Frostbane</div>
+    <div class="tier-item" onclick="openModal('Upper')">Upper</div>
+    <div class="tier-item" onclick="openModal('Alter')">Alter</div>	
+    <div class="tier-item" onclick="openModal('Espada')">Espada</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Pride')">Pride</div>
+    <div class="tier-item" onclick="openModal('Monarch')">Monarch</div>
+    <div class="tier-item" onclick="openModal('Monarch')">Monarch</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Mugetsu')">Mugetsu</div>
+    <div class="tier-item" onclick="openModal('Yamato')">Yamato</div>
+    <div class="tier-item" onclick="openModal('Zoldyck')">Zoldyck</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Raikage')">Raikage</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Sasaki')">Sasaki</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="artifactModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const artifactData = {
+  "Frostbane": {
+    pros: "The passive of Frostbane lets you stack damage, which works perfectly in late-game boss slaying. It also gives that additional luck for more drops.",
+  },
+  "Upper": {
+    pros: "One of the strongest stat boosting clans in the game. However, it is even stronger due to the passive that lets you deal more damage after every skill used.",
+  },
+  "Eminence": {
+    pros: "If you are going for a farmer build with good luck, Eminence is the best clan in our Sailor Piece tier list. It gives bonus drop chance with a solid raw luck stat.",
+  },
+  "Alter": {
+    pros: "Alter gives huge damage and HP boosts, along with a passive that constantly deals damage for using abilities. This makes it one of the strongest clans for boss fights and long battles.",
+  },
+  "Espada": {
+    pros: "Espada gives balanced stats with a similar passive mechanic of Alter with a longer ability requirement. This makes it one of the strongest clans for boss fights and long battles.",
+  },
+  "Pride": {
+    pros: "Pride gives huge damage and HP boosts along with a stacking damage mechanic. This makes it one of the strongest clans for boss fights and long battles.",
+  },
+  "Monarch": {
+    pros: "Monarch provides strong damage bonuses and a chance to gain extra drops. It is one of the best clans for farming rare items and materials.",
+  },
+  "Voldigoat": {
+    pros: "Voldigoat increases damage against enemies with low health. This makes it extremely powerful when finishing bosses quickly.",
+  },
+  "Mugetsu": {
+    pros: "Mugetsu offers balanced bonuses, including damage, HP, lifesteal, and damage reduction. It works well for most builds.",
+  },
+  "Yamato": {
+    pros: "Yamato provides solid damage and HP bonuses while also increasing gem gains. This makes it useful for farming resources.",
+  },
+  "Zoldyck": {
+    pros: "Zoldyck improves sprint speed and gem gain while still offering decent damage bonuses.",
+  },
+  "Raikage": {
+    pros: "Raikage gives moderate stat boosts along with money and gem bonuses. It is helpful early, but weaker for combat.",
+  },
+  "Sasaki": {
+    pros: "Sasaki provides small damage and XP bonuses. However, it lacks strong scaling compared to other clans.x",
+  },
+};
+
+function openModal(name){
+  const data = artifactData[name];
+
+  if(!data){
+    alert("Bu artifact için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("artifactModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("artifactModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("artifactModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

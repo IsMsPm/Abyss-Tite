@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traits</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>TRAITS CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Emperor')">Emperor</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Celestial')">Celestial</div>
+    <div class="tier-item" onclick="openModal('Singularity')">Singularity</div>
+    <div class="tier-item" onclick="openModal('Cataclysm')">Cataclysm</div>
+    <div class="tier-item" onclick="openModal('Overlord')">Overlord</div>
+    <div class="tier-item" onclick="openModal('Malevolent')">Malevolent</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Transcendent')">Transcendent</div>
+    <div class="tier-item" onclick="openModal('Infinity')">Infinity</div>
+    <div class="tier-item" onclick="openModal('Godspeed')">Godspeed</div>
+    <div class="tier-item" onclick="openModal('Godspeed')">Godspeed</div>
+    <div class="tier-item" onclick="openModal('Genesis')">Genesis</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Dominator')">Dominator</div>
+    <div class="tier-item" onclick="openModal('Unstoppable')">Unstoppable</div>
+    <div class="tier-item" onclick="openModal('Overdrive')">Overdrive</div>
+    <div class="tier-item" onclick="openModal('Ascended')">Ascended</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Breaker')">Breaker</div>
+    <div class="tier-item" onclick="openModal('Sharpened')">Sharpened</div>
+    <div class="tier-item" onclick="openModal('Vicious')">Vicious</div>
+    <div class="tier-item" onclick="openModal('Predator')">Predator</div>
+    <div class="tier-item" onclick="openModal('Driven')">Driven</div>
+  </div>
+</div>
+
+ <div class="tier">
+  <div class="tier-label d">D</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Balanced')">Balanced</div>
+    <div class="tier-item" onclick="openModal('Steady')">Steady</div>
+    <div class="tier-item" onclick="openModal('Agile')">Agile</div>
+    <div class="tier-item" onclick="openModal('Strong')">Strong</div>
+    <div class="tier-item" onclick="openModal('Tough')">Tough</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="traitsModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const traitsData = {
+  "Emperor": {
+    pros: "Best damage boost traits in the game along with the best cooldown reduction.",
+  },
+  "Celestial": {
+    pros: "Celestial provides extremely high damage scaling along with strong defense bonuses. The cooldown reduction also makes abilities available more often.",
+  },
+  "Singularity": {
+    pros: "Singularity offers high damage multipliers and excellent defensive scaling. It is one of the most balanced and powerful traits available.",
+  },
+  "Cataclysm": {
+    pros: "Cataclysm focuses heavily on damage output while still providing strong defensive bonuses. It works well with nearly every build.",
+  },
+  "Overlord": {
+    pros: "Overlord has massive defense scaling and high damage bonuses. It is very strong in difficult boss fights and late game content.",
+  },
+  "Malevolent": {
+    pros: "Malevolent offers excellent damage multipliers and cooldown reduction. It is slightly weaker than the top traits but still extremely powerful.",
+  },
+  "Transcendent": {
+    pros: "Transcendent provides strong damage and defense bonuses. It performs well overall but does not reach the power of S tier traits.",
+  }, 
+  "Infinity": {
+    pros: "Infinity offers solid multipliers and cooldown reduction. It works well for builds that rely on frequent skill usage.",
+  },
+  "Godspeed": {
+    pros: "Godspeed focuses more on cooldown reduction than damage. This allows you to use abilities more frequently during combat.",
+  },
+  "Sovereign": {
+    pros: "Sovereign provides very strong defensive scaling. However its damage bonus is lower compared to other traits.",
+  },
+  "Genesis": {
+    pros: "Genesis offers balanced stats but does not have any standout bonuses.",
+  },
+  "Dominator": {
+    pros: "Dominator provides decent damage and defense boosts. It works well early but becomes less effective later.",
+  },
+  "Unstoppable": {
+    pros: "Unstoppable has strong defense but weaker damage scaling.",
+  },
+  "Overdrive": {
+    pros: "Overdrive provides moderate bonuses and small cooldown reduction.",
+  },
+  "Ascended": {
+    pros: "Ascended offers balanced damage and defense but nothing exceptional.",
+  },
+  "Breaker": {
+    pros: "Breaker focuses mainly on defense and lacks strong offensive bonuses.",
+  },
+  "Sharpened": {
+    pros: "Sharpened increases damage slightly but provides almost no defensive value.",
+  },
+  "Vicious": {
+    pros: "Vicious gives minor stat boosts and small cooldown reduction.",
+  },
+  "Predator": {
+    pros: "Predator increases damage slightly but has weak defensive scaling.",
+  },
+  "Driven": {
+    pros: "Driven provides small bonuses that quickly become outdated.",
+  },
+  "Balanced": {
+    pros: "Balanced offers small damage and defense bonuses that are easily replaced.",
+  },
+  "Steady": {
+    pros: "Steady provides weak defensive scaling and limited offensive value.",
+  },
+  "Agile": {
+    pros: "Agile only reduces cooldown slightly and offers no other useful bonuses.",
+  },
+  "Strong": {
+    pros: "Strong provides minimal damage increases.",
+  },
+  "Tough": {
+    pros: "Tough increases defense slightly but does not improve damage.",
+  },
+ };
+
+function openModal(name){
+  const data = traitsData[name];
+
+  if(!data){
+    alert("Bu traits için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("traitsModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("traitsModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("traitsModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

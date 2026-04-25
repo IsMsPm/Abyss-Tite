@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runes</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>RUNES CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+  <!-- S+ -->
+  <div class="tier">
+    <div class="tier-label splus">S+</div>
+    <div class="tier-items">
+      <div class="tier-item" onclick="openModal('Primordial Rune')">Primordial Rune</div>
+      <div class="tier-item" onclick="openModal('Radiant Rune')">Radiant Rune</div>
+    </div>
+  </div>
+
+  <!-- S -->
+  <div class="tier">
+    <div class="tier-label s">S</div>
+    <div class="tier-items">
+      <div class="tier-item" onclick="openModal('Havoc Rune')">Havoc Rune</div>
+      <div class="tier-item" onclick="openModal('Wrath Rune')">Wrath Rune</div>
+      <div class="tier-item" onclick="openModal('Fortune Rune')">Fortune Rune</div>
+    </div>
+  </div>
+
+  <!-- A -->
+  <div class="tier">
+    <div class="tier-label a">A</div>
+    <div class="tier-items">
+      <div class="tier-item" onclick="openModal('Destruction Rune')">Destruction Rune</div>
+    </div>
+  </div>
+
+  <!-- B -->
+  <div class="tier">
+    <div class="tier-label b">B</div>
+    <div class="tier-items">
+      <div class="tier-item" onclick="openModal('Inferno Rune')">Inferno Rune</div>
+      <div class="tier-item" onclick="openModal('Blood Rune')">Blood Rune</div>
+    </div>
+  </div>
+
+  <!-- C -->
+  <div class="tier">
+    <div class="tier-label c">C</div>
+    <div class="tier-items">
+      <div class="tier-item" onclick="openModal('Frost Rune')">Frost Rune</div>
+      <div class="tier-item" onclick="openModal('Guardian Rune')">Guardian Rune</div>
+      <div class="tier-item" onclick="openModal('Suppression Rune')">Suppression Rune</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="runesModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const runesData = {
+  "Primordial Rune": {
+    pros: "This secret Rune is the best DPS rune in the game.",
+  },
+  "Radiant Rune": {
+    pros: "Radiant Rune is the best rune for farming as it improves luck and drop.",
+  },
+  "Havoc Rune": {
+    pros: "Havoc Rune is the best Rune in the Sailor Piece for DPS, as it provides the maximum damage boost of 82%. The insane damage boost can be very useful for solo clearing bosses and endgame grinding.",
+  },
+  "Wrath Rune": {
+    pros: "Wrath Rune provides the second highest damage boosts in the game. It is one of the best options, if you don’t have Havoc Rune and want to maximize DPS.",
+  },
+  "Fortune Rune": {
+    pros: "Fortune Rune increases your luck, which improves the chance of rare drops. This makes it extremely valuable for farming bosses and rare items.",
+  },
+  "Destruction Rune": {
+    pros: "Destruction Rune provides a strong damage boost, but not as high as Havoc and Wrath.",
+  },
+  "Inferno Rune": {
+    pros: "Inferno Rune applies burn damage over time to enemies. It is useful in longer fights but weaker than direct damage boosts.",
+  }, 
+  "Blood Rune": {
+    pros: "Blood Rune causes enemies to bleed for extra damage over time. The effect is decent but not as impactful as higher-tier runes.",
+  },
+  "Frost Rune": {
+    pros: "Frost Rune can freeze enemies briefly and increase damage slightly. However, the effect is situational and not very reliable.",
+  },
+  "Guardian Rune": {
+    pros: "Guardian Rune increases your maximum HP, which improves survivability. Unfortunately, it does not boost damage, which limits its usefulness.",
+  },
+  "Suppression Rune": {
+    pros: "Suppression Rune provides a small amount of damage reduction. The effect is minor compared to other rune bonuses.",
+  },
+
+ };
+
+function openModal(name){
+  const data = runesData[name];
+
+  if(!data){
+    alert("Bu runes için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("runesModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("runesModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("runesModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

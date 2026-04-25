@@ -1,0 +1,713 @@
+/* =========================
+   GLOBAL
+========================= */
+
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+
+  background: linear-gradient(
+    120deg,
+    #020617,
+    #030712,
+    #0b0f1a,
+    #030712,
+    #020617
+  );
+
+  background-size: 400% 400%;
+  animation: bgMove 20s ease infinite;
+
+  color:#e5e7eb;
+  position:relative;
+}
+
+/* =========================
+   HEADER (FIXED)
+========================= */
+
+header{
+  padding:20px;
+  font-size:28px;
+  font-weight:900;
+  text-align:center;
+
+  position:relative;
+  z-index:1000;
+
+  /* 🔥 ARKA PLAN GRADIENT (üst bar artık siyah değil) */
+  background: linear-gradient(
+    90deg,
+    #000000,
+    #0b0f2a,
+    #000000
+  );
+
+  border-bottom:1px solid rgba(56,189,248,0.3);
+
+  color:#38bdf8;
+
+  text-shadow:
+    0 0 6px rgba(56,189,248,0.8),
+    0 0 15px rgba(139,92,246,0.6);
+
+  letter-spacing:2px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+/* =========================
+   TIER
+========================= */
+
+.tier{
+  display:flex;
+  align-items:stretch;
+  margin:16px 0;
+  border-radius:16px;
+  overflow:hidden;
+
+  order:1px solid rgba(56,189,248,0.15);
+
+  background: rgba(10,10,10,0.85); /* 🔥 daha net */
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.6),
+    0 0 20px rgba(250,204,21,0.08);
+
+  padding:10px;
+}
+
+/* =========================
+   TIER LABEL
+========================= */
+
+.tier-label{
+  width:100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:20px;
+  border-radius:14px;
+  margin:10px;
+  padding:15px;
+  color:white;
+}
+
+/* =========================
+   ITEMS
+========================= */
+
+.tier-items{
+  flex:1;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:14px;
+}
+
+/* =========================
+   ITEM
+========================= */
+
+.tier-item{
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.1);
+
+  background:rgba(10,10,10,0.95);
+
+  transition:0.25s;
+  font-weight:600;
+  cursor:pointer;
+
+  position:relative;
+  overflow:hidden;
+}
+
+.tier-item:hover{
+  transform:translateY(-4px) scale(1.05);
+
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  /* 🔥 SADECE PARLAKLIK HİSSİ */
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.35),
+    0 0 12px rgba(255,255,255,0.15);
+}
+
+/* =========================
+   TIER COLORS
+========================= */
+
+.tier-label.splus{background:linear-gradient(135deg,#7c3aed,#f472b6);}
+.tier-label.s{background:linear-gradient(135deg,#ff2d55,#ff9500);}
+.tier-label.a{background:linear-gradient(135deg,#facc15,#f97316);}
+.tier-label.b{background:linear-gradient(135deg,#22c55e,#16a34a);}
+.tier-label.c{background:linear-gradient(135deg,#3b82f6,#2563eb);}
+.tier-label.d{background:linear-gradient(135deg,#c0c0c0,#e5e7eb);}
+.tier-label.e{background:linear-gradient(135deg,#cd7f32,#b45309);}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+
+  /* 🔥 karartma azaltıldı (blur görünsün diye) */
+  background:rgba(0,0,0,0.5);
+
+  /* 🔥 ASIL OLAY BURASI */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(10px);
+
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.modal-content{
+  background:#050505;
+  padding:30px;
+  border-radius:20px;
+  width:90%;
+  max-width:500px;
+
+  animation:popIn 0.3s ease;
+
+  border:1px solid rgba(56,189,248,0.25);
+
+  box-shadow:
+    0 0 25px rgba(56,189,248,0.25),
+    0 0 60px rgba(139,92,246,0.2);
+}
+
+/* CLOSE */
+.close{
+  position:absolute;
+  right:20px;
+  top:15px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes popIn{
+  from{transform:scale(0.7);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* =========================
+   BACKGROUND GLOW (SAFE)
+========================= */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(56,189,248,0.08), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(139,92,246,0.06), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(59,130,246,0.05), transparent 50%);
+
+  z-index:-999; /* 🔥 tamamen arkada */
+}
+
+/* =========================
+   BACK BUTTON (ULTRA FIX)
+========================= */
+
+.back-btn{
+  position:absolute;
+  left:20px;
+  top:18px;
+
+  z-index:999999;
+
+  background:#000; /* 🔥 FULL OPACITY */
+  color:#38bdf8;
+
+  padding:12px 20px;
+  font-size:12px;
+  font-weight:800;
+
+  text-decoration:none;
+  border-radius:12px;
+
+  border:2px solid #38bdf8;
+
+  /* 🔥 hiçbir blur yok */
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  filter:none !important;
+
+  box-shadow:
+    0 0 10px rgba(56,189,248,0.5);
+
+  transition:0.25s;
+}
+
+/* HOVER */
+.back-btn:hover{
+  background:#38bdf8;
+  color:#000;
+
+  box-shadow:
+    0 0 20px rgba(56,189,248,1),
+    0 0 40px rgba(139,92,246,0.7);
+
+  transform:scale(1.08);
+}
+.relic-item{
+  display:flex;
+  align-items:center;
+  gap:24px;
+
+  background:rgba(10,10,10,0.75);
+  border:1px solid rgba(56,189,248,0.15);
+
+  border-radius:16px;
+  padding:40px;
+  min-height:200px;
+
+  transition:0.3s;
+
+  /* 🔥 EKLENENLER */
+  position:relative;
+  overflow:hidden;
+}
+
+/* hover efekt */
+.relic-item:hover{
+  transform:translateY(-3px) scale(1.02);
+
+  box-shadow:
+    0 0 20px rgba(56,189,248,0.4),
+    0 0 40px rgba(139,92,246,0.25);
+}
+
+/* =========================
+   ✨ SHINE EFFECT
+========================= */
+
+.relic-item::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(56,189,248,0.5),
+    rgba(139,92,246,0.4),
+    transparent
+  );
+
+  transition:0.7s;
+}
+
+.relic-item:hover::before{
+  left:100%;
+}
+
+/* =========================
+   🔥 Z-INDEX FIX
+========================= */
+
+.relic-content,
+.relic-img{
+  position:relative;
+  z-index:2;
+}
+
+/* hover efekt */
+.relic-item:hover{
+  transform:translateY(-3px) scale(1.02); /* hafif büyüme eklendi */
+
+  box-shadow:
+    0 0 15px rgba(56,189,248,0.25),
+    0 0 25px rgba(139,92,246,0.2);
+}
+/* =========================
+   IMAGE FRAME (🔥 EN ÖNEMLİ)
+========================= */
+
+.relic-img{
+  width:300px;
+  height:200px;
+  flex-shrink:0;
+
+  border-radius:12px;
+
+  padding:3px;
+
+  background:linear-gradient(135deg,#38bdf8,#8b5cf6,#60a5fa);
+
+  box-shadow:
+    0 0 10px rgba(56,189,248,0.6),
+    0 0 20px rgba(139,92,246,0.5);
+}
+
+.relic-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  border-radius:10px;
+
+  display:block;
+}
+
+/* =========================
+   TEXT AREA
+========================= */
+
+.relic-content{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+/* başlık */
+.relic-title{
+  font-size:26px;
+  font-weight:800;
+
+  color:#38bdf8;
+
+  text-shadow:
+    0 0 6px rgba(56,189,248,0.8),
+    0 0 12px rgba(139,92,246,0.6);
+}
+
+/* açıklama */
+.relic-desc{
+  font-size:18px;
+  color:#d1d5db;
+
+  line-height:1.6;
+
+  opacity:0.9;
+}
+
+/* ekstra bilgi */
+.relic-meta{
+  font-size:13px;
+  font-weight:600;
+
+  color:#9ca3af;
+}
+
+/* =========================
+   GRID (KAYMA FIX)
+========================= */
+
+.relic-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+/* mobil */
+@media(max-width:768px){
+  .relic-grid{
+    grid-template-columns:1fr;
+  }
+}
+/* =========================
+   🔥 FINAL MODAL GLOW
+========================= */
+
+.modal-content.splus h2,
+.modal-content.splus strong{
+  color:#c084fc;
+  text-shadow:
+    0 0 5px rgba(192,132,252,0.55),
+    0 0 14px rgba(192,132,252,0.35);
+}
+
+.modal-content.s h2,
+.modal-content.s strong{
+  color:#ff7a18;
+  text-shadow:
+    0 0 5px rgba(255,122,24,0.55),
+    0 0 14px rgba(255,122,24,0.35);
+}
+
+.modal-content.a h2,
+.modal-content.a strong{
+  color:#facc15;
+  text-shadow:
+    0 0 5px rgba(250,204,21,0.55),
+    0 0 14px rgba(250,204,21,0.35);
+}
+
+.modal-content.b h2,
+.modal-content.b strong{
+  color:#22c55e;
+  text-shadow:
+    0 0 5px rgba(34,197,94,0.55),
+    0 0 14px rgba(34,197,94,0.35);
+}
+
+.modal-content.c h2,
+.modal-content.c strong{
+  color:#3b82f6;
+  text-shadow:
+    0 0 5px rgba(59,130,246,0.55),
+    0 0 14px rgba(59,130,246,0.35);
+}
+
+.modal-content.d h2,
+.modal-content.d strong{
+  color:#c0c0c0;
+
+  text-shadow:
+    0 0 5px rgba(192,192,192,0.55),
+    0 0 14px rgba(229,231,235,0.35);
+}
+
+.modal-content.e h2,
+.modal-content.e strong{
+  color:#cd7f32;
+
+  text-shadow:
+    0 0 5px rgba(205,127,50,0.55),
+    0 0 14px rgba(146,64,14,0.35);
+}
+
+/* =========================
+   🔥 HOVER BACKGROUND GLOW
+========================= */
+
+/* S+ */
+.tier-label.splus + .tier-items .tier-item:hover{
+  border-color:#c084fc;
+
+  background-color: rgba(124,58,237,0.08);
+
+  box-shadow:
+    0 0 12px rgba(192,132,252,0.7),
+    0 0 25px rgba(244,114,182,0.6),
+    inset 0 0 10px rgba(124,58,237,0.25);
+
+    text-shadow:
+    0 0 6px rgba(192,132,252,0.6),
+    0 0 14px rgba(244,114,182,0.4);
+}
+
+/* S */
+.tier-label.s + .tier-items .tier-item:hover{
+  border-color:#ff2d55;
+
+  background-color: rgba(255,45,85,0.08);
+
+  box-shadow:
+    0 0 12px rgba(255,45,85,0.7),
+    0 0 25px rgba(255,149,0,0.5),
+    inset 0 0 10px rgba(255,45,85,0.25);
+
+  text-shadow:
+    0 0 6px rgba(255,45,85,0.6),
+    0 0 14px rgba(255,149,0,0.4);
+}
+
+/* A */
+.tier-label.a + .tier-items .tier-item:hover{
+  border-color:#facc15;
+
+  background-color: rgba(250,204,21,0.08);
+
+  box-shadow:
+    0 0 12px rgba(250,204,21,0.75),
+    0 0 25px rgba(249,115,22,0.5),
+    inset 0 0 10px rgba(250,204,21,0.25);
+
+  text-shadow:
+    0 0 6px rgba(250,204,21,0.6),
+    0 0 14px rgba(249,115,22,0.4);
+}
+
+/* B */
+.tier-label.b + .tier-items .tier-item:hover{
+  border-color:#22c55e;
+
+  background-color: rgba(34,197,94,0.08);
+
+  box-shadow:
+    0 0 12px rgba(34,197,94,0.75),
+    0 0 25px rgba(22,163,74,0.5),
+    inset 0 0 10px rgba(34,197,94,0.25);
+
+  text-shadow:
+    0 0 6px rgba(34,197,94,0.6),
+    0 0 14px rgba(22,163,74,0.4);
+}
+
+/* C */
+.tier-label.c + .tier-items .tier-item:hover{
+  border-color:#3b82f6;
+
+  background-color: rgba(59,130,246,0.08);
+
+  box-shadow:
+    0 0 12px rgba(59,130,246,0.75),
+    0 0 25px rgba(37,99,235,0.5),
+    inset 0 0 10px rgba(59,130,246,0.25);
+
+  text-shadow:
+    0 0 6px rgba(59,130,246,0.6),
+    0 0 14px rgba(37,99,235,0.4);
+}
+
+/* D */
+.tier-label.d + .tier-items .tier-item:hover{
+  border-color:#D1D5DB;
+
+  background-color: rgba(209,213,219,0.08);
+
+  box-shadow:
+    0 0 12px rgba(209,213,219,0.75),
+    0 0 25px rgba(156,163,175,0.5),
+    inset 0 0 10px rgba(209,213,219,0.25);
+
+  text-shadow:
+    0 0 6px rgba(209,213,219,0.6),
+    0 0 14px rgba(156,163,175,0.4);
+}
+
+/* E */
+.tier-label.e + .tier-items .tier-item:hover{
+  border-color:#CD7F32;
+
+  background-color: rgba(205,127,50,0.08);
+
+  box-shadow:
+    0 0 12px rgba(205,127,50,0.75),
+    0 0 25px rgba(139,69,19,0.5),
+    inset 0 0 10px rgba(205,127,50,0.25);
+
+  text-shadow:
+    0 0 6px rgba(205,127,50,0.6),
+    0 0 14px rgba(139,69,19,0.4);
+}
+/* =========================
+   ✨ GRADIENT + GLOW TEXT
+========================= */
+
+.tier-item{
+  position:relative;
+  font-weight:700;
+
+  background-size:100%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  /* 🔥 hafif parlaklık */
+  text-shadow:
+    0 0 4px rgba(255,255,255,0.25);
+
+  transition:0.3s;
+}
+
+/* hover = daha parlak */
+.tier-item:hover{
+  text-shadow:
+    0 0 0px rgba(255,255,255,0.4),
+    0 0 0px rgba(255,255,255,0.25);
+}
+
+/* =========================
+   🔥 TIER RENKLERİ (GRADIENT)
+========================= */
+
+/* S+ */
+.tier-label.splus + .tier-items .tier-item{
+  background-image:linear-gradient(90deg,#c084fc,#f472b6);
+}
+
+/* S */
+.tier-label.s + .tier-items .tier-item{
+  background-image:linear-gradient(90deg,#ff2d55,#ff9500);
+}
+
+/* A */
+.tier-label.a + .tier-items .tier-item{
+  background-image:linear-gradient(90deg,#facc15,#f97316);
+}
+
+/* B */
+.tier-label.b + .tier-items .tier-item{
+  background-image:linear-gradient(90deg,#22c55e,#16a34a);
+}
+
+/* C */
+.tier-label.c + .tier-items .tier-item{
+  background-image:linear-gradient(90deg,#3b82f6,#2563eb);
+}
+
+/* D (Silver) */
+.tier-label.d + .tier-items .tier-item{
+  background-image:linear-gradient(90deg,#e5e7eb,#9ca3af);
+}
+
+/* E (Bronze) */
+.tier-label.e + .tier-items .tier-item{
+  background-image:linear-gradient(90deg,#cd7f32,#7c2d12);
+}
+/* =========================
+   ✨ SHINE EFFECT
+========================= */
+
+.tier-item::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:120%;
+  height:100%;
+
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+
+  transform:skewX(-25deg);
+}
+
+.tier-item:hover::after{
+  left:120%;
+  transition:0.6s ease;
+}
