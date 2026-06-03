@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power</title>
+<link rel="stylesheet" href="tier.css">
+</head>
+
+<body>
+
+<header>POWER CATEGORY
+<a href="index.html" class="back-btn">← Back</a>
+</header>
+
+<div class="container">
+
+<div class="tier">
+  <div class="tier-label splus">S+</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Subjugator')">Subjugator</div>
+    <div class="tier-item" onclick="openModal('Colossus')">Colossus</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label s">S</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Cursebrand')">Cursebrand</div>
+    <div class="tier-item" onclick="openModal('Abyssal')">Abyssal</div>
+    <div class="tier-item" onclick="openModal('Eternal')">Eternal</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label a">A</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Apex')">Apex</div>
+    <div class="tier-item" onclick="openModal('Tempest')">Tempest</div>
+    <div class="tier-item" onclick="openModal('Reaper')">Reaper</div>
+    <div class="tier-item" onclick="openModal('Titanborn')">Titanborn</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label b">B</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Ironclad')">Ironclad</div>
+    <div class="tier-item" onclick="openModal('Infernal')">Infernal</div>
+    <div class="tier-item" onclick="openModal('Wrathful')">Wrathful</div>
+  </div>
+</div>
+
+<div class="tier">
+  <div class="tier-label c">C</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Empowered')">Empowered</div>
+    <div class="tier-item" onclick="openModal('Resolute')">Resolute</div>
+    <div class="tier-item" onclick="openModal('Battleborn')">Battleborn</div>
+  </div>
+</div>
+
+ <div class="tier">
+  <div class="tier-label d">D</div>
+  <div class="tier-items">
+    <div class="tier-item" onclick="openModal('Tempered')">Tempered</div>
+    <div class="tier-item" onclick="openModal('Solid')">Solid</div>
+    <div class="tier-item" onclick="openModal('Fierce')">Fierce</div>
+  </div>
+</div>
+
+</div>
+
+<!-- =========================
+     POPUP MODAL
+========================= -->
+
+<div id="powerModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p><strong>Pros:</strong> <span id="modalPros"></span></p>
+  </div>
+</div>
+
+<script>
+const powerData = {
+  "Subjugator": {
+    pros: "Best overall trait with massive stat spread and a useful slow effect. Great for both damage and control in fights. The only drawback is that the passive does not stack, but it still outperforms everything else.",
+  },
+  "Colossus": {
+    pros: "Huge stat boosts across damage, HP, and boss damage. One of the best picks for raids and boss fights. Lacks utility effects, but raw power alone carries it to the top.",
+  },
+  "Cursebrand": {
+    pros: "Strong stats with a stacking damage effect during combat. Works very well in longer fights. Needs consistent hits to shine, which can limit it in short fights.",
+  },
+  "Abyssal": {
+    pros: "High damage with solid crit bonuses. Reliable and easy to use in any build. Does not have special effects, so it relies purely on stats.",
+  },
+  "Eternal": {
+    pros: "Balanced stat spread with strong survivability. Performs well in both farming and bossing. Slightly less damage-focused than Abyssal.",
+  },
+  "Apex": {
+    pros: "Good mix of stats with added luck. Useful for farming while still boosting combat. Does not specialize, so it feels weaker than higher tiers.",
+  },
+  "Tempest": {
+    pros: "High damage with some crit support. A solid offensive option for most builds. Lacks survivability compared to better traits.",
+  },
+  "Titanborn": {
+    pros: "High HP with decent damage. Great for survivability-focused builds. Damage output is not strong enough for top-tier play.",
+  }, 
+  "Reaper": {
+    pros: "Balanced damage with crit boosts. Works well if you build around crits. Falls off without proper synergy.",
+  },
+  "Ironclad": {
+    pros: "Good balance between damage and HP. Reliable but not exceptional. Lacks crit or utility bonuses to push it higher.",
+  },
+  "Infernal": {
+    pros: "Adds crit damage along with decent stats. Useful in early-mid progression. Does not scale well into the late game.",
+  },
+  "Wrathful": {
+    pros: "Decent damage with minor crit chance. Works fine early on. Limited overall impact compared to higher tiers.",
+  },
+  "Empowered": {
+    pros: "Basic stat boost with decent scaling. Works early but fades quickly.",
+  },
+  "Resolute": {
+    pros: "More HP-focused with average damage. Not ideal for damage builds.",
+  },
+  "Battleborn": {
+    pros: "Balanced starter trait. Gets replaced once better options appear.",
+  },
+  "Tempered": {
+    pros: "Small stat boost. Only useful at the very start.",
+  },
+  "Solid": {
+    pros: "Slightly more HP-focused. Damage output is too low.",
+  },
+  "Fierce": {
+    pros: "Basic damage increase. Quickly becomes irrelevant.",
+  },
+ };
+
+function openModal(name){
+  const data = powerData[name];
+
+  if(!data){
+    alert("Bu power için veri eklenmemiş!");
+    return;
+  }
+
+  const modal = document.getElementById("powerModal");
+  const content = document.querySelector(".modal-content");
+
+  // TEXTLER
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPros").innerText = data.pros;
+
+  // 🔥 TÜM RENKLERİ SİL
+  content.classList.remove("splus","s","a","b","c");
+
+  // 🔥 TIER BUL (HTML'den)
+  const item = [...document.querySelectorAll(".tier-item")]
+    .find(el => el.innerText === name);
+
+  const tierLabel = item.closest(".tier").querySelector(".tier-label");
+
+  // 🔥 CLASS EKLE
+  if(tierLabel.classList.contains("splus")) content.classList.add("splus");
+  if(tierLabel.classList.contains("s")) content.classList.add("s");
+  if(tierLabel.classList.contains("a")) content.classList.add("a");
+  if(tierLabel.classList.contains("b")) content.classList.add("b");
+  if(tierLabel.classList.contains("c")) content.classList.add("c");
+
+  modal.style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("powerModal").style.display = "none";
+}
+
+window.onclick = function(e){
+  const modal = document.getElementById("powerModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
